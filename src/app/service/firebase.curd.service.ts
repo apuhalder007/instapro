@@ -8,11 +8,8 @@ export class FirebaseCurdService {
   constructor() { 
     this.database = firebase.database();
   }
-  add_to_collection(collection, id, payload){
-    // this.database.ref(collection+'/'+id).set(payload)
-    // .then(data=>{
-    //   console.log(data, 'curd add');
-    // })
-    console.log(111);
+  add_user(collection, id, payload){
+    let user = this.database.ref(collection+'/'+id).set(payload)
+    console.log(user);
   }
 }
