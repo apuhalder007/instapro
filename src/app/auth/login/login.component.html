@@ -1,0 +1,23 @@
+<div class="jumbotron">
+  <h4 class="display-6">Login</h4>
+  <hr class="my-4">
+  <div class="col-sm-4">
+    <app-notification></app-notification>
+    <form class="was-validated" (ngSubmit)="login(f)" #f="ngForm">
+      <div class="form-group">
+        <label for="uname">Email:</label>
+        <input type="text" class="form-control" id="email" ngModel placeholder="Enter Email" name="email" required>
+        <div class="valid-feedback">Valid.</div>
+        <div class="invalid-feedback">Please fill out this field.</div>
+      </div>
+      <div class="form-group">
+        <label for="pwd">Password:</label>
+        <input type="password" class="form-control" name="pwd" id="pwd" ngModel placeholder="Enter password" required>
+        <div class="valid-feedback">Valid.</div>
+        <div class="invalid-feedback">Please fill out this field.</div>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+
+</div>

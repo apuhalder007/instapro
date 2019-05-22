@@ -1,0 +1,43 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">InstaPro</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact:
+        true}">
+        <a class="nav-link" routerLink="">All Photos</a>
+      </li>
+      <li *ngIf="isLogin" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact:
+        true}">
+        <a class="nav-link" routerLink="followers">Followers</a>
+      </li>
+      <li *ngIf="isLogin" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact:
+        true}">
+        <a class="nav-link" routerLink="favourites" >Favourites</a>
+      </li>
+      <li *ngIf="isLogin" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact:
+        true}">
+        <a class="nav-link" routerLink="my-photos" routerLinkActive="active" [routerLinkActiveOptions]="{exact:
+          true}">My Photos</a>
+      </li>
+    </ul>
+    <ul class="navbar-nav my-2 my-lg-0">
+      <li *ngIf="!isLogin" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact:
+        true}">
+        <a class="nav-link" routerLink="auth/login">Login <span class="sr-only">(current)</span></a>
+      </li>
+      <li *ngIf="!isLogin" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact:
+        true}">
+        <a class="nav-link" routerLink="auth/signup">Signup</a>
+      </li>
+      <li *ngIf="isLogin" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact:
+        true}">
+        <a class="nav-link" (click)="logout()">Logout</a>
+      </li>
+    </ul>
+    
+  </div>
+</nav>
