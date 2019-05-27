@@ -1,3 +1,23 @@
-<p>
-  my-photos works!
-</p>
+<div class="main">
+  <div class="upload-panel" >
+      <div class="card">
+          <div class="card-body">
+              <input type="file" name="image-field" id="image-field" (change)="imageUpload($event)">
+          </div>
+        </div>
+    
+  </div>
+
+  <div class="upoaded-images" *ngIf="posts.length > 0">
+      <div *ngFor="let post of posts"
+       class="card" style="width: 14rem;">
+        <img class="card-img-top" [src]="post.data?.imageUrl" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">{{post.data.title}}</h5>
+          <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
+          <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+      </div>
+  </div>
+</div>
+

@@ -19,13 +19,8 @@ export class SignupComponent implements OnInit {
   }
   constructor(  private curdServ:FirebaseCurdService , private notify : NotificationService) { }
   private collectionName = 'users';
-  private payload = {
-    email: 'test1@gmail.com',
-    fullname : 'apu'
-  };
   ngOnInit() {
     console.log(this.curdServ);
-    
   }
 
 
