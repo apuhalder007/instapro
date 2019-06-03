@@ -4,8 +4,11 @@
     <img class="card-img-top" [src]="post.data?.imageUrl" alt="Card image cap" width="100" height="100">
     <div class="card-body">
       <h5 class="card-title">{{post.data?.title}}</h5>
-      <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
-      <a href="#" class="btn btn-primary">View</a>
+      <p class="card-text">
+          <a (click)="removeFavourite(post.favKey)"  class="btn btn-primary"><i class="fa fa-remove"></i></a>
+          <a [routerLink]="['/'+post.key]" routerLinkActive="router-link-active"  class="btn btn-primary"><i class="fa fa-eye"></i></a>
+      </p>
+      
     </div>
   </div>
 </div>

@@ -25,6 +25,7 @@ import { MyPhotosComponent } from './my-photos/my-photos.component';
 import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { NotificationComponent } from './shared/notification/notification.component';
+import { SinglePostComponent } from './single-post/single-post.component';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { NotificationComponent } from './shared/notification/notification.compon
     MyPhotosComponent,
     LoginComponent,
     SignupComponent,
-    NotificationComponent
+    NotificationComponent,
+    SinglePostComponent
   ],
   imports: [
     BrowserModule,
