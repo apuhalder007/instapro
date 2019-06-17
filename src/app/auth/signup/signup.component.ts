@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { SingupModel } from './signup-model';
 import { FirebaseCurdService } from '../../service/firebase.curd.service';
+import { TestService } from '../../service/test.service';
 import {NotificationService} from '../../../service/notification.service';
 import { NotificationComponent } from '../../shared/notification/notification.component';
 import * as firebase from 'firebase';
@@ -17,7 +18,11 @@ export class SignupComponent implements OnInit {
     email: '',
     pwd:''
   }
-  constructor(  private curdServ:FirebaseCurdService , private notify : NotificationService) { }
+  constructor(  
+    private curdServ:FirebaseCurdService , 
+    private notify : NotificationService,
+    private testSer: TestService
+    ) { }
   private collectionName = 'users';
   ngOnInit() {
     console.log(this.curdServ);

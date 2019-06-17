@@ -4,7 +4,9 @@
       <img class="card-img-top" [src]="post.data?.imageUrl" alt="Card image cap" width="100" height="100">
       <div class="card-body text-center">
         <h5 class="card-title" *ngIf="post.data?.uid != uid">
-            <span class='fa fa-heart' (click)="makeFavourite(post.key)"></span>   <span class="fa fa-check" (click)="following(post.data.uid)"></span>
+            <span *ngIf="!isFavvourite(post.key)" class='fa fa-heart' (click)="makeFavourite(post.key)"></span>   
+            <span *ngIf="!isFollowing(post.data.uid)"  class="fa fa-user-plus" (click)="following(post.data.uid)"></span>
+            <span *ngIf="isFollowing(post.data.uid)"  class="fa fa-user" (click)="unfollow(post.data.uid)"></span>
         </h5>
         <a [routerLink]="['/'+ post.key]" routerLinkActive="router-link-active"  class="btn btn-primary">View</a>
       </div>

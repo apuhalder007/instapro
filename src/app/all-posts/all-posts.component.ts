@@ -10,11 +10,17 @@ export class AllPostsComponent implements OnInit {
   private posts = [];
   private uid: any;
   private collectionPost = '/posts';
+  private followings: any = [];
+  private favourites: any = [];
+  private rootRef = firebase.database().ref();
+  private followersDetails: any = [];
   constructor(private router: Router) { }
   ngOnInit() {
     let storageData = window.localStorage.getItem('loginUser');
     let newstorageData = JSON.parse(storageData);
     this.uid = newstorageData.uid;
+    this.getCurrentUserFavourites();
+    this.getCurrentUserFollowings();
     this.getposts(10);
   }
 
@@ -28,6 +34,51 @@ export class AllPostsComponent implements OnInit {
       });
     })
     console.log(this.posts);
+  }
+
+  getCurrentUserFollowings(){
+    this.rootRef.child('followers').orderByChild('uid').equalTo(this.uid).
+    on('child_added', (snapshot)=>{
+      const followId = snapshot.val().followId;
+      this.followings.push(followId);
+      this.followersDetails.push({
+        key: snapshot.key,
+        followId: followId
+      })
+    });
+
+    console.log(this.followings, 'all following user');
+  }
+  getCurrentUserFavourites(){
+    this.rootRef.child('Favourite').orderByChild('uid').equalTo(this.uid).
+    on('child_added', (snapshot)=>{
+      let postId = snapshot.val().postId;
+      this.favourites.push({
+        key: snapshot.key,
+        postId: postId
+      });
+      this.favourites.push(postId);
+    })
+
+    // console.log(this.favourites);
+  }
+
+  isFollowing(item: any){
+    if(this.followings.indexOf(item) !== -1) {
+      return true;
+    } else {
+    }
+    return false;
+  }
+
+  isFavvourite(item: any){
+    if(this.favourites.indexOf(item) !== -1) {
+      // console.log('this article is fevourite');
+      return true;
+    } else {
+      // console.log('this article is not fevourite');
+    }
+    return false;
   }
 
   makeFavourite(postId: any) {
@@ -66,5 +117,28 @@ export class AllPostsComponent implements OnInit {
       this.router.navigate(['/auth/login']);
     }
   }
+
+  unfollow(userID: any ){
+    const unfollowDetails =  this.followersDetails.map(follower=>{
+        if(follower.followId == userID){
+          return follower;
+        }
+    });
+    console.log(unfollowDetails);
+    const unfollowKey = unfollowDetails[0].key;
+    console.log(unfollowKey);
+    this.rootRef.child('followers').child(unfollowKey).remove()
+    .then( removeFavData=>{
+      console.log('unfollow user done!' );
+      console.log('before splice', this.followings);
+      const pos = this.followings.indexOf(userID);
+      this.followings.splice(pos, 1);
+      console.log('before splice', this.followings);
+    })
+    .catch(err=>{
+      console.log(err);
+    });
+
+  } 
 
 }
